@@ -1,0 +1,33 @@
+<!-- views/opencv_view.xml -->
+
+<odoo>
+    <record id="opencv_image_processing_form" model="ir.ui.view">
+        <field name="name">opencv.image.processing.form</field>
+        <field name="model">opencv.image.processing</field>
+        <field name="arch" type="xml">
+            <form string="OpenCV Image Processing">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="image" widget="image" class="oe_avatar"/>
+                        <field name="image_path" readonly="1"/>
+                    </group>
+                    <footer>
+                        <button string="Process Image" type="object" name="process_image" class="oe_highlight"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <menuitem id="opencv_menu_root" name="OpenCV" sequence="10"/>
+    <menuitem id="opencv_image_processing_menu" name="Image Processing" parent="opencv_menu_root" action="action_opencv_image_processing"/>
+    
+    <record id="action_opencv_image_processing" model="ir.actions.act_window">
+        <field name="name">Image Processing</field>
+        <field name="res_model">opencv.image.processing</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="opencv_image_processing_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>
